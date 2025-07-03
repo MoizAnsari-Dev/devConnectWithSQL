@@ -48,4 +48,12 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+
+//Deleting user from DB;
+router.delete('/:id', async (req, res) => {
+ await pool.query(`DELETE FROM users WHERE id`, [req.params.id])
+ res.json({message: 'User Deleted'})
+})
+
 export { router };
