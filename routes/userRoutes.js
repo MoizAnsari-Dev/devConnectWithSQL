@@ -48,7 +48,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
+router.put('/:id', async (req, res) => {
+  const {name, email} = req.body;
+  const result = await pool.query(
+    'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *',
+    [name, email, req.params.id]
+  );
+  res.json(result.rows[0])
+});
 
 //Deleting user from DB;
 router.delete('/:id', async (req, res) => {
