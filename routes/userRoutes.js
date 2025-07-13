@@ -15,6 +15,7 @@ router.post("/", async (req, res) => {
       [name, email.toLowerCase(), password]
     );
     console.log(results.rows.length);
+    
     console.log("Users Register successfully");
     
 
@@ -51,10 +52,13 @@ router.get("/:id", async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const {name, email} = req.body;
+  const findUser = await pool.query(`SELECT * FROM users id = $1 RETURNING *`, [req.params.id]);
+  console.log(findUser);
+  
+  const {name, password} = req.body;
   const result = await pool.query(
-    'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *',
-    [name, email, req.params.id]
+    'UPDATE users SET name = $1, password = $2 WHERE id = $3 RETURNING *',
+    [name, password, req.params.id]
   );
   res.json(result.rows[0])
 });
