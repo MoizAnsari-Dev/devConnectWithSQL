@@ -13,9 +13,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/MoizAnsari-Dev/devConnectWithSQL/issues"
   },
-  "homepage": "https://github.com/MoizAnsari-Dev/devConnectWithSQL#readme"
+  "homepage": "https://github.com/MoizAnsari-Dev/devConnectWithSQL#readme",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "prisma": "^6.11.1"
+  }
 }
